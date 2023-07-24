@@ -6,9 +6,7 @@
   Table of Contents:
   ------------------
   1. Folders
-  2. Getting Started
-  3. Contributions
-  4. Contact Information
+
 -->
 
 # DevOps Bootcamp
