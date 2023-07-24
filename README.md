@@ -3,10 +3,6 @@
 
   This repository houses a collection of folders, each representing different modules following in the DevOps bootcamp from TechWorld with Nana. 
 
-  Table of Contents:
-  ------------------
-  1. Folders
-
 -->
 
 # DevOps Bootcamp
