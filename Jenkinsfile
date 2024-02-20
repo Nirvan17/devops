@@ -16,10 +16,8 @@ pipeline {
         stage('init') {
             
             steps {
-                steps {
-                    script {
-                        gv = load "script.groovy"
-                    }
+                script {
+                    gv = load "script.groovy"
                 }
                 // echo 'incrementing version'
                 // script {
