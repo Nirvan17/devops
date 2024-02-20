@@ -13,11 +13,15 @@ pipeline {
     }
 
     stages {
-        stage('increment version') {
-
+        stage('init') {
             
             steps {
-                echo 'incrementing version'
+                steps {
+                    script {
+                        gv = load "script.groovy"
+                    }
+                }
+                // echo 'incrementing version'
                 // script {
                 //     echo 'incrementing app version...'
                 //     sh 'mvn build-helper:parse-version versions:set \
@@ -33,7 +37,10 @@ pipeline {
 
             
             steps {
-                echo 'building application'
+                script {
+                    gv.buildApp()
+                }
+                // echo 'building application'
                 // script {
                 //     echo 'building the application...'
                 //     sh 'mvn clean package'
@@ -56,10 +63,10 @@ pipeline {
         }
         stage('test') {
             when {
-                    expression {
-                        params.executeTests
-                    }
+                expression {
+                    params.executeTests
                 }
+            }
             
             steps {
                 
