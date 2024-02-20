@@ -74,6 +74,23 @@ pipeline {
                 // }
             }
         }
+
+        stage('deploy') {
+            input {
+                message "Select the environment to deploy to "
+                ok "Done"
+                parameters {
+                    choice(name: 'VERSION', choices: ['dev', 'staging', 'prod'], description: '')
+
+                }
+            }
+            steps {
+                script {
+                    gv.deployApp()
+                    echo "Deploying to ${ENV}"
+                }
+            }
+        }
         // stage('commit version update'){
         //     steps {
         //         echo 'commit version update'
