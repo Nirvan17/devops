@@ -47,12 +47,12 @@ pipeline {
                 script {
                     echo "building the docker image..."
                     withCredentials([usernamePassword(credentialsId: 'docker-hub-repo', passwordVariable: 'PASS', usernameVariable: 'USER')]){
-                        // sh "docker build -t nanatwn/demo-app:${IMAGE_NAME} ."
-                        sh "docker build -t nanatwn/demo-app:jma-2.0 ."
+                        // sh "docker build -t nirvanb/demo-app:${IMAGE_NAME} ."
+                        sh "docker build -t nirvanb/demo-app:jma-2.0 ."
 
                         sh 'echo $PASS | docker login -u $USER --password-stdin'
-                        // sh "docker push nanatwn/demo-app:${IMAGE_NAME}"
-                        sh "docker push nanatwn/demo-app:jma-2.0"
+                        // sh "docker push nirvanb/demo-app:${IMAGE_NAME}"
+                        sh "docker push nirvanb/demo-app:jma-2.0"
 
                     }
                 }
