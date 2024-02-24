@@ -5,16 +5,13 @@ pipeline {
     tools {
         maven 'Maven-3.9'
     }
-
     // parameters {
     //     // string(name: ‘VERSION’, defaultValue: ‘’, description: ‘version to deploy on prod’)
     //     choice(name: 'VERSION', choices: ['1.1.0', '1.2.0', '1.3.0'], description: '')
     //     booleanParam(name: 'executeTests', defaultValue: true, description: '')
     // }
-
     stages {
-        // stage('init') {
-            
+        // stage('init') {  
         //     steps {
         //         script {
         //             gv = load "script.groovy"
@@ -32,30 +29,28 @@ pipeline {
         //     }
         // }
         stage('build app') {
-
-            
             steps {
-                script {
-                    gv.buildApp()
-                }
-                echo 'building application'
+                // script {
+                //     gv.buildApp()
+                // }
+                // echo 'building application'
                 script {
                     echo 'building the application...'
-                    sh 'mvn clean package'
+                    // sh 'mvn clean package'
+                    sh 'mvn package'
                 }
             }
         }
         stage('build image') {
-            
-            
             steps {
-                echo 'building image'
+                // echo 'building image'
                 script {
                     echo "building the docker image..."
                     withCredentials([usernamePassword(credentialsId: 'docker-hub-repo', passwordVariable: 'PASS', usernameVariable: 'USER')]){
                         sh "docker build -t nanatwn/demo-app:${IMAGE_NAME} ."
                         sh 'echo $PASS | docker login -u $USER --password-stdin'
                         sh "docker push nanatwn/demo-app:${IMAGE_NAME}"
+                    }
                 }
             }
         }
