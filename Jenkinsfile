@@ -47,8 +47,6 @@ pipeline {
                 script {
                     gv.deployApp()
                     // echo "building the docker image..."
-
-                    }
                 }
             }
         }
