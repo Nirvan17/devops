@@ -44,7 +44,7 @@ pipeline {
         stage('build app') {
             when {
                 expression {
-                    BRANCH_NAME == "master"
+                    BRANCH_NAME == "main"
                 }
             }
             steps {
@@ -80,7 +80,7 @@ pipeline {
             // }
             when {
                 expression {
-                    BRANCH_NAME == "master"
+                    BRANCH_NAME == "main"
                 }
             }
             steps {
