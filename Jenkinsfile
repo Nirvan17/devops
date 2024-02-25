@@ -25,7 +25,7 @@ pipeline {
         stage("build image") {
             steps {
                 script {
-                    gv.buildImage()
+                    buildImage 'nirvanb/demo-app:jma-3.0'
                 }
             }
         }
