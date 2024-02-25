@@ -13,6 +13,7 @@ def buidlImage() {
         sh 'echo $PASS | docker login -u $USER --password-stdin'
         // sh "docker push nirvanb/demo-app:${IMAGE_NAME}"
         sh "docker push nirvanb/demo-app:jma-2.0"
+    }
 }
 def deployApp() {
     echo 'deploying the application...'

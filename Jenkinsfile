@@ -35,9 +35,10 @@ pipeline {
                 // }
                 // echo 'building application'
                 script {
-                    echo 'building the application...'
-                    // sh 'mvn clean package'
-                    sh 'mvn package'
+                    // echo 'building the application...'
+                    // // sh 'mvn clean package'
+                    // sh 'mvn package'
+                    gv.buildApp()
                 }
             }
         }
@@ -45,7 +46,7 @@ pipeline {
             steps {
                 // echo 'building image'
                 script {
-                    gv.deployApp()
+                    gv.buidlImage()
                     // echo "building the docker image..."
                 }
             }
@@ -77,7 +78,7 @@ pipeline {
             // }
             steps {
                 script {
-                    // gv.deployApp()
+                    gv.deployApp()
                     // echo "Deploying to ${ENV}"
                     echo "Deploying the application..."
                 }
