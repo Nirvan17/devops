@@ -1,5 +1,12 @@
 #!/user/bin/env groovy
-@Library('nirvan-jenkins-shared-library')
+
+library identifier: "nirvan-jenkins-shared-library@main", retriever: modernSCM(
+    [$class: 'GitSCMSource',
+    remote: 'https://github.com/Nirvan17/nirvan-jenkins-shared-library.git',
+    credentialsId: 'github-credentials'
+    ])
+
+// @Library('nirvan-jenkins-shared-library@2.0')
 
 def gv
 
