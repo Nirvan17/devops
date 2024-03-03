@@ -18,16 +18,18 @@ pipeline {
             //     }
             // }
             steps {
-                // script {
-                echo 'testing app'
-                echo "Executing pipeline for branch $BRANCH_NAME"
-                // }
+                script {
+                    echo 'testing app'
+                    // echo "Executing pipeline for branch $BRANCH_NAME"
+                    echo 'testing the integration'
+                }
             }
         }
         stage('init') {  
             steps {
                 script {
-                    gv = load "script.groovy"
+                    'initializing'
+                    // gv = load "script.groovy"
                 }
                 // echo 'incrementing version'
                 // script {
@@ -42,21 +44,21 @@ pipeline {
             }
         }
         stage('build app') {
-            when {
-                expression {
-                    BRANCH_NAME == "main"
-                }
-            }
+            // when {
+            //     expression {
+            //         BRANCH_NAME == "main"
+            //     }
+            // }
             steps {
                 // script {
                 //     gv.buildApp()
                 // }
                 // echo 'building application'
                 script {
-                    // echo 'building the application...'
+                    echo 'building the application...'
                     // // sh 'mvn clean package'
                     // sh 'mvn package'
-                    gv.buildJar()
+                    // gv.buildJar()
                 }
             }
         }
@@ -64,8 +66,8 @@ pipeline {
             steps {
                 // echo 'building image'
                 script {
-                    gv.buidlImage()
-                    // echo "building the docker image..."
+                    // gv.buidlImage()
+                    echo "building the docker image..."
                 }
             }
         }
@@ -78,14 +80,14 @@ pipeline {
 
             //     }
             // }
-            when {
-                expression {
-                    BRANCH_NAME == "main"
-                }
-            }
+            // when {
+            //     expression {
+            //         BRANCH_NAME == "main"
+            //     }
+            // }
             steps {
                 script {
-                    gv.deployApp()
+                    // gv.deployApp()
                     // echo "Deploying to ${ENV}"
                     echo "Deploying the application..."
                 }
