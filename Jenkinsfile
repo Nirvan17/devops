@@ -21,7 +21,7 @@ pipeline {
                 script {
                     echo 'testing app'
                     // echo "Executing pipeline for branch $BRANCH_NAME"
-                    echo 'testing the integration'
+                    // echo 'testing the integration'
                 }
             }
         }
