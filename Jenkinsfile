@@ -13,12 +13,12 @@ pipeline {
         //         }
         //     }
         // }
-        stage("increment version") {
+        stage('increment version') {
             steps {
                 script {
                     echo 'incrementing app version...'
                     sh 'mvn build-helper:parse-version verions:set \
-                        -DnewVersions=\\\${parsedVersion.majorVersion}.\\\${parsedVersion.minorVersion}.\\\${parsedVersion.nextMinorVersion} \
+                        -DnewVersion=\\\${parsedVersion.majorVersion}.\\\${parsedVersion.minorVersion}.\\\${parsedVersion.nextIncrementalVersion} \
                         versions:commit'
                     def matcher = readFile('pom.xml') =~ '<version>(.+)</version>'
                     def version = matcher[0][1]
@@ -26,7 +26,7 @@ pipeline {
                 }
             }
         }
-        stage("build app") {
+        stage('build app') {
             steps {
                 script {
                     // buildJar()
@@ -37,7 +37,7 @@ pipeline {
             }
         }
 
-        stage("build image") {
+        stage('build image') {
             steps {
                 script {
                     // buildImage 'nirvanb/demo-app:jma-3.0'
