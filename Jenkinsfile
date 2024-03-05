@@ -6,13 +6,6 @@ pipeline {
         maven 'maven-3.9'
     }
     stages {
-        // stage("init") {
-        //     steps {
-        //         script {
-        //             gv = load "script.groovy"
-        //         }
-        //     }
-        // }
         stage('increment version') {
             steps {
                 script {
@@ -36,7 +29,6 @@ pipeline {
                 }
             }
         }
-
         stage('build image') {
             steps {
                 script {
