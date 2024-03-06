@@ -43,12 +43,29 @@ pipeline {
             }
         }
 
-        // stage("deploy") {
-        //     steps {
-        //         script {
-        //             gv.deployApp()
-        //         }
-        //     }
-        // }               
+        stage('deploy') {
+            steps {
+                script {
+                    // gv.deployApp()
+                    echo 'deploying docker image...'
+                }
+            }
+        }
+        stage('commit version update') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'docker-hub-repo', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+                    sh 'git config --global user.email "jenkins@example.com"'
+                    sh 'git config --global user.name "jenkins"'
+                    
+                    sh 'git status'
+                    sh 'git branch'
+                    sh 'git config --list'
+                    sh "git remote set-url origin https://${USER}:${PASS}@github.com/Nirvan17/devops.git"
+                    sh 'git add .'
+                    sh 'git commit -m "ci: version bump"'
+                    sh 'git push origin HEAD:jenkins-job'
+                }
+            }
+        }               
     }
 } 
