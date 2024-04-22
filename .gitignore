@@ -1,1 +1,3 @@
 ./build_folders/*
+**/.idea/
+.DS_Store
