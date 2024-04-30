@@ -30,3 +30,17 @@ spec:
             secretKeyRef:
               name: mongodb-secret
               key: mongo-root-password
+
+# Below is a separation which means a new file is starting here
+---
+apiVersion: v1
+kind: Service
+metadata: # a random name
+  name: mongodb-service
+spec:
+  selector: # to connect to Pod through label
+    app: mongodb 
+  ports:
+  - protocol: TCP
+    port: 27017 # Service port
+    targetPort: 27017 # containerPort of Deployment
