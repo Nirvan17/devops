@@ -17,9 +17,9 @@ spec:
       containers:
       - name: mongodb
         image: mongo
-        ports:
+        ports: 
         - containerPort: 27017
-        env:
+        env: 
         - name: MONGO_INITDB_ROOT_USERNAME
           valueFrom:
             secretKeyRef:
@@ -29,16 +29,18 @@ spec:
           valueFrom:
             secretKeyRef:
               name: mongodb-secret
-              key: mongo-root-password 
+              key: mongo-root-password
+
+# Below is a separation which means a new file is starting here
 ---
 apiVersion: v1
 kind: Service
-metadata:
+metadata: # a random name
   name: mongodb-service
 spec:
-  selector:
+  selector: # to connect to Pod through label
     app: mongodb
   ports:
   - protocol: TCP
-    port: 27017
-    targetPort: 27017 
+    port: 27017 # Service port
+    targetPort: 27017 # containerPort of Deployment
